@@ -1,0 +1,62 @@
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size:  20px;
+}
+
+form.billing-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.input-box {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.input-box:last-child {
+  margin-right: 0;
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-box input,
+.input-box textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-box textarea {
+  resize: vertical;
+}
+
+@media (max-width: 600px) {
+  .row {
+      flex-direction: column;
+  }
+
+  .input-box {
+      margin-right: 0;
+      margin-bottom: 15px;
+  }
+
+  .input-box:last-child {
+      margin-bottom: 0;
+  }
+}

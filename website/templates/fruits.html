@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Grocery Website Design Tutorial</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/websitecss/website.css' %}">
+</head>
+<body>
+    <!-- header section starts -->
+    <section class="header">
+        <a href="#" class="logo"><i class="fas fa-shopping-basket"></i> grocery </a>
+         <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#features">features</a>
+            <a href="#products">products</a>
+            <a href="#categories">categories</a>
+            <a href="#review">review</a>
+         </nav>
+         <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            {% if request.session.user_role == 'Admin' %}
+                <div class="fas fa-user" id="login-btn"></div>
+            {% elif request.session.user_role == 'Customer' %}
+            <a href="{% url 'cart' %}"><div class="fas fa-shopping-cart" id="cart-btn">
+            </div></a>
+                <div class="fas fa-user" id="login-btn"></div>
+            {% else %}
+                <div class="fas fa-user" id="login-btn"></div>
+            {% endif %}
+         </div>
+         <form action="" class="search-form">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+         <div class="login-form">
+            {% if user.is_authenticated %}
+                {% if user.role == 'Admin' %}
+                    <li><a class="dropdown-item" href="{% url 'admin' %}"><i class="fa fa-user"></i> Dashboard</a></li>
+                    <br>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a></li>
+                {% elif user.role == 'Customer' %}
+                    <li><a class="dropdown-item" href="{% url 'p_profile' %}"><i class="fa fa-user"></i> Profile</a></li>
+                    <br>
+                    <li><a class="dropdown-item" href="{% url 'order' %}"><i class="fa fa-list"></i> My Orders</a></li>
+                    <br>
+                    <li><a class="dropdown-item" href="{% url 'address' %}"><i class='fas'>&#xf015;</i> Your Address</a></li>
+                    <br>
+                    <li><a class="dropdown-item" href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                    <br>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> LogOut</a></li>
+                {% endif %}
+                {% else %}
+                    <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fa fa-sign-out"></i> LogIn</a></li>
+            {% endif %}
+         </div>
+    </section>
+
+    <!-- <header section ends -->
+
+    <!-- categories section start -->
+
+    <section class="categories" id="categories" style="margin-top: 100px;">
+        <h1 class="heading"> product <span>categories</span></h1>
+        <div class="box-container">
+            {% if fruits %}
+                {% for fruit in fruits %}
+                    <div class="box">
+                        <img decoding="async" src="{{ fruit.image.url }}" alt="{{ fruit.name }}">
+                        <h3>{{ fruit.name }}</h3>
+                        <p>Price: ₹{{ fruit.price }}/KG</p>
+                        <p>AVL. Quantity: {{ fruit.stock }}</p>
+                        {% if user.is_authenticated and user.role == 'Customer' %}
+                            <a href="{% url 'add_to_cart' fruit.id 'fruits' %}" class="btn">Add to Cart</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No fruits available.</p>
+            {% endif %}
+        </div>
+    </section>
+    
+
+    <!-- categories section ends -->
+
+    <!-- footer section starts -->
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>grocery <i class="fas fa-shopping-basket"></i></h3>
+                <p>Grocery Items . . means Farhanfood and foodstuffs, green groceries, beverages and household goods
+                    usually prepackaged...</p>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#" class="links"><i class="fas fa-phone"></i> +123-443-5678</a>
+                <a href="#" class="links"><i class="fas fa-phone"></i> +444-222-6789</a>
+                <a href="#" class="links"><i class="fas fa-envelope"></i> shaikhfarhan@gmail.com</a>
+                <a href="#" class="links"><i class="fas fa-map-marker-alt"></i> mumbai, india - 401203</a>
+            </div>
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#" class="links"><i class="fas fa-arrow-right"></i> home</a>
+                <a href="#" class="links"><i class="fas fa-arrow-right"></i> features</a>
+                <a href="#" class="links"><i class="fas fa-arrow-right"></i> products</a>
+                <a href="#" class="links"><i class="fas fa-arrow-right"></i> categories</a>
+                <a href="#" class="links"><i class="fas fa-arrow-right"></i> review</a>
+                <a href="#" class="links"><i class="fas fa-arrow-right"></i> blogs</a>
+            </div>
+            <div class="box">
+                <h3>newsletter</h3>
+                <p>subscribe for latest update</p>
+                <input type="email" placeholder="enter your emai" class="email" name="">
+                <input type="submit" value="subscribe" class="btn" name="">
+                <img decoding="async" src="img/payment.png" class="payment-img">
+            </div>
+        </div>
+        <div class="credit"> created by <span>Soumya@Pandua</span> || all right reserved </div>
+    </section>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- custom js file link -->
+    <script type="text/javascript" src="{% static 'js/websitejs/website.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/websitejs/cart.js' %}"></script>
+</body>
+</html>

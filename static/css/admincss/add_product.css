@@ -1,0 +1,125 @@
+.form-input {
+  padding: 25px;
+  background: #fff;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 7px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-input h2 {
+  font-size: 27px;
+  text-align: center;
+  margin: 0px 0 30px;
+}
+
+.form-input.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-input label {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.form-input input,
+.form-input select {
+  height: 45px;
+  padding: 10px;
+  width: 100%;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #bfbfbf;
+}
+
+.form-input input:focus,
+.form-input select:focus {
+  border-color: #9a9a9a;
+}
+
+.form-input input.error,
+.form-input select.error {
+  border-color: #f91919;
+  background: #f9f0f1;
+}
+
+.form-input small {
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+  color: #f91919;
+}
+
+.submit-btn {
+  margin-top: 30px;
+}
+
+.submit-btn input {
+  color: white;
+  border: none;
+  height: auto;
+  font-size: 16px;
+  padding: 13px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  background: #1BB295;
+  transition: 0.2s ease;
+}
+
+.submit-btn input:hover {
+  background: #179b81;
+}
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background-color: #f9f9f9;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  font-size: 16px;
+  color: #333;
+}
+td {
+  font-size: 14px;
+}
+td a {
+  color: #007bff;
+  text-decoration: none;
+}
+td a:hover {
+  text-decoration: underline;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+#paginationControls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
